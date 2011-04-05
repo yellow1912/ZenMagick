@@ -1,3 +1,5 @@
+## ZenMagick store IoC container config
+
 services:
   ZMRequest:
     class: Request

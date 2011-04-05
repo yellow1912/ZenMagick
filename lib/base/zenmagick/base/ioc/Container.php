@@ -24,6 +24,7 @@ namespace zenmagick\base\ioc;
 use zenmagick\base\ClassLoader;
 use zenmagick\base\ioc\extension\ZenMagickExtension;
 
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 
 /**
@@ -34,7 +35,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
  * @author DerManoMann
  * @package zenmagick.base.ioc
  */
-class Container extends \Symfony\Component\DependencyInjection\ContainerBuilder {
+class Container extends ContainerBuilder {
     private $services_;
 
     /**
@@ -43,6 +44,7 @@ class Container extends \Symfony\Component\DependencyInjection\ContainerBuilder 
     public function __construct(ParameterBagInterface $parameterBag=null) {
         parent::__construct($parameterBag);
         $this->services_ = array();
+        ContainerBuilder::registerExtension(new ZenMagickExtension());
     }
 
     /**

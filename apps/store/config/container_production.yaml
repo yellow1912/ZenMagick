@@ -1,5 +1,6 @@
 imports:
     ## defaults
+    - { resource: c_config.yaml }
     - { resource: container.yaml }
     ## shared defaults
     - { resource: ../../../config/store-container.yaml }

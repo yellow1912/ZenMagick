@@ -21,7 +21,9 @@
 <?php
 namespace zenmagick\base\settings;
 
+use zenmagick\base\Runtime;
 use zenmagick\base\Toolbox;
+use zenmagick\base\ioc\loader\YamlLoader;
 
 
 /**
@@ -31,8 +33,6 @@ use zenmagick\base\Toolbox;
  * @package org.zenmagick.base
  */
 class Settings {
-    protected $settings_ = array();
-
 
     /**
      * Lookup a given path.
@@ -41,7 +41,7 @@ class Settings {
      * @return mixed Either an <code>array</code> with value, element name (the last path element) and parent container in it, or <code>null</code>.
      */
     private function lookup($path) {
-        $current = &$this->settings_;
+        $current = Runtime::getContainer()->getParameterBag()->all();
         foreach (Toolbox::mexplode('./', $path) as $element) {
             if (empty($element)) {
                 throw new \RuntimeException(sprintf('invalid path: %s', $path));
@@ -94,7 +94,7 @@ class Settings {
         }
 
         // create path
-        $current = &$this->settings_;
+        $current = Runtime::getContainer()->getParameterBag()->all();
         foreach (Toolbox::mexplode('./', $path) as $element) {
             if (empty($element)) {
                 throw new \RuntimeException(sprintf('invalid path: %s', $path));
@@ -156,7 +156,7 @@ class Settings {
      * @return array Map of all settings.
      */
     public function getAll() {
-        return $this->settings_;
+        return Runtime::getContainer()->getParameterBag()->all();
     }
 
     /**
@@ -168,8 +168,10 @@ class Settings {
         if ($settings instanceof Settings) {
             $settings = $settings->getAll();
         }
-        if (is_array($settings)) {
-            $this->settings_ = Toolbox::arrayMergeRecursive($this->settings_, $settings);
+        if (is_array($settings) && 0 < count($settings)) {
+            // TODO: make more efficient
+            $loader = new YamlLoader(Runtime::getContainer());
+            $loader->setParameters($settings);
         }
     }
 

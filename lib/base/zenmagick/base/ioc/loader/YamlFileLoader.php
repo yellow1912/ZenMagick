@@ -49,4 +49,15 @@ class YamlFileLoader extends \Symfony\Component\DependencyInjection\Loader\YamlF
         return parent::supports($resource) || (is_string($resource) && 'yaml' === pathinfo($resource, PATHINFO_EXTENSION));
     }
 
+    /**
+     * Set parameters.
+     *
+     * @param array parameters Parameters.
+     */
+    public function setParameters($parameters) {
+        foreach ($parameters as $key => $value) {
+            $this->container->setParameter($key, $this->resolveServices($value));
+        }
+    }
+
 }
