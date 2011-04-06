@@ -116,7 +116,6 @@ ZMLoader::instance()->addPath(ZM_BASE_PATH.trim($name).DIRECTORY_SEPARATOR);
         $containerYamlLoader = new YamlFileLoader(Runtime::getContainer(), dirname($containerConfig));
         $containerYamlLoader->load($containerConfig);
     }
-    var_dump(Runtime::getSettings()->getAll());
 
     // hook up default event listeners
     foreach (Runtime::getSettings()->get('zenmagick.base.events.listeners', array()) as $_zm_elc) {

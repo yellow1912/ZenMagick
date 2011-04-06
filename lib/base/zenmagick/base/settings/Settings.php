@@ -22,7 +22,6 @@
 namespace zenmagick\base\settings;
 
 use zenmagick\base\Runtime;
-use zenmagick\base\Toolbox;
 use zenmagick\base\ioc\loader\YamlLoader;
 
 
@@ -42,7 +41,8 @@ class Settings {
      */
     private function lookup($path) {
         $current = Runtime::getContainer()->getParameterBag()->all();
-        foreach (Toolbox::mexplode('./', $path) as $element) {
+        $base = &$current;
+        foreach (explode('/', $path) as $element) {
             if (empty($element)) {
                 throw new \RuntimeException(sprintf('invalid path: %s', $path));
             }
@@ -52,7 +52,7 @@ class Settings {
             $last = &$current;
             $current = &$current[$element];
         }
-        return array($current, $element, $last);
+        return array($current, $element, $last, $base);
     }
 
     /**
@@ -62,6 +62,7 @@ class Settings {
      * @return boolean <code>true</code> if the path exists.
      */
     public function exists($path) {
+        $path = str_replace('.', '/', $path);
         return null !== $this->lookup($path);
     }
 
@@ -73,6 +74,7 @@ class Settings {
      * @return mixed The value, the default value or <code>null</code>.
      */
     public function get($path, $default=null) {
+        $path = str_replace('.', '/', $path);
         if (null !== ($lookup = $this->lookup($path))) {
             return $lookup[0];
         }
@@ -88,14 +90,19 @@ class Settings {
      * @return mixed The old value or <code>null</code>.
      */
     public function set($path, $value) {
+        $path = str_replace('.', '/', $path);
+        $token = explode('/', $path);
         if (null !== ($lookup = $this->lookup($path))) {
             $lookup[2][$lookup[1]] = $value;
+            $base = $lookup[3];
+            Runtime::getContainer()->getParameterBag()->set($token[0], $base[$token[0]]);
             return $lookup[0];
         }
 
         // create path
         $current = Runtime::getContainer()->getParameterBag()->all();
-        foreach (Toolbox::mexplode('./', $path) as $element) {
+        $base = &$current;
+        foreach ($token as $element) {
             if (empty($element)) {
                 throw new \RuntimeException(sprintf('invalid path: %s', $path));
             }
@@ -106,6 +113,7 @@ class Settings {
             $current = &$current[$element];
         }
         $last[$element] = $value;
+        Runtime::getContainer()->getParameterBag()->set($token[0], $base[$token[0]]);
         return null;
     }
 
@@ -118,8 +126,10 @@ class Settings {
      * @return mixed The old value or <code>null</code>.
      */
     public function append($path, $value, $delim=',') {
+        $path = str_replace('.', '/', $path);
         if (null !== ($lookup = $this->lookup($path))) {
-            $lookup[2][$lookup[1]] .= $delim.$value;
+            $value = $lookup[2][$lookup[1]] . $delim.$value;
+            $this->set($path, $value);
             return $lookup[0];
         }
         return $this->set($path, $value);
@@ -136,11 +146,13 @@ class Settings {
      * @return mixed The old value or <code>null</code>.
      */
     public function add($path, $value) {
+        $path = str_replace('.', '/', $path);
         if (null !== ($lookup = $this->lookup($path))) {
             if (!is_array($lookup[2][$lookup[1]])) {
                 $lookup[2][$lookup[1]] = array($lookup[2][$lookup[1]]);
             }
             $lookup[2][$lookup[1]][] = $value;
+            $this->set($path, $lookup[2][$lookup[1]]);
             return $lookup[0];
         }
 

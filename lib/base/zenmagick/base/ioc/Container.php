@@ -50,6 +50,13 @@ class Container extends ContainerBuilder {
     /**
      * {@inheritDoc}
      */
+    public function compile() {
+        //TODO: remove
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function get($id, $invalidBehavior=self::EXCEPTION_ON_INVALID_REFERENCE) {
         if ($this->has($id)) {
             return parent::get($id, $invalidBehavior);
