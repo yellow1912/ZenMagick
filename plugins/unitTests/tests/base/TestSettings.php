@@ -101,7 +101,7 @@ class TestSettings extends ZMTestCase {
      */
     public function testAddNewValue() {
         $settings = new Settings();
-        $key = 'a.b.n@@';
+        $key = 'a.xx.n@@';
         $value = 'doh';
 
         $this->assertFalse($settings->exists($key));
@@ -133,8 +133,8 @@ class TestSettings extends ZMTestCase {
      */
     public function testNewValue() {
         $settings = new Settings();
-        $key = 'a.b.n@@';
-        $pkey = 'a.b';
+        $key = 'a.zz.n@@';
+        $pkey = 'a.zz';
         $value = 'doh';
 
         $this->assertFalse($settings->exists($key));
