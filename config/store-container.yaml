@@ -5,7 +5,7 @@
 ##
 
 # database configuration settings
-doctrine:
+zenmagick.doctrine:
   dbal:
     connections:
       default:
