@@ -62,7 +62,7 @@ class Settings {
      * @return boolean <code>true</code> if the path exists.
      */
     public function exists($path) {
-        $path = str_replace('.', '/', $path);
+        $path = strtolower(str_replace('.', '/', $path));
         return null !== $this->lookup($path);
     }
 
@@ -74,7 +74,7 @@ class Settings {
      * @return mixed The value, the default value or <code>null</code>.
      */
     public function get($path, $default=null) {
-        $path = str_replace('.', '/', $path);
+        $path = strtolower(str_replace('.', '/', $path));
         if (null !== ($lookup = $this->lookup($path))) {
             return $lookup[0];
         }
@@ -90,7 +90,7 @@ class Settings {
      * @return mixed The old value or <code>null</code>.
      */
     public function set($path, $value) {
-        $path = str_replace('.', '/', $path);
+        $path = strtolower(str_replace('.', '/', $path));
         $token = explode('/', $path);
         if (null !== ($lookup = $this->lookup($path))) {
             $lookup[2][$lookup[1]] = $value;
@@ -126,7 +126,7 @@ class Settings {
      * @return mixed The old value or <code>null</code>.
      */
     public function append($path, $value, $delim=',') {
-        $path = str_replace('.', '/', $path);
+        $path = strtolower(str_replace('.', '/', $path));
         if (null !== ($lookup = $this->lookup($path))) {
             $value = $lookup[2][$lookup[1]] . $delim.$value;
             $this->set($path, $value);
@@ -146,7 +146,7 @@ class Settings {
      * @return mixed The old value or <code>null</code>.
      */
     public function add($path, $value) {
-        $path = str_replace('.', '/', $path);
+        $path = strtolower(str_replace('.', '/', $path));
         if (null !== ($lookup = $this->lookup($path))) {
             if (!is_array($lookup[2][$lookup[1]])) {
                 $lookup[2][$lookup[1]] = array($lookup[2][$lookup[1]]);
