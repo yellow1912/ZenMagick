@@ -80,6 +80,16 @@ class Container extends ContainerBuilder {
     }
 
     /**
+     * {@inheritDoc}
+     */
+    public function loadFromExtension($extension, $tag, array $values = array()) {
+        $obj = $this->getExtension($extension);
+        // beats me why this isn't working any more
+        $obj->load($tag, $values, $this);
+        return parent::loadFromExtension($extension, $tag, $values);
+    }
+
+    /**
      * Get a singleton service.
      *
      * <p>This method keeps its own map of references because instances returned by <code>get(..)</code> might be of
