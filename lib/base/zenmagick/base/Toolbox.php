@@ -69,15 +69,14 @@ class Toolbox {
     }
 
     /**
-     * Load a <em>YAML</em> file and automatically merge any <code>environment</code> settings contained.
+     * Get the environment version of the config file given.
      *
-     * @param string filename The file to load.
+     * @param string filename The original filename.
      * @param string environment Optional environment; default is the value of <code>ZM_ENVIRONMENT</code>.
      * @param boolean useEnvFile Optional flag to load the <em>file_[$environemnt].yaml</em> file if available; default is <code>true</code>.
-     * @param boolean clearImports Optional flag to remove imports details from the loaded data before returning; default is <code>true</code>.
-     * @return mixed The parsed YAML.
+     * @return string The resolved filename.
      */
-    public static function loadWithEnv($filename, $environment=ZM_ENVIRONMENT, $useEnvFile=true, $clearImports=true) {
+    public static function getEnvFilename($filename, $environment=ZM_ENVIRONMENT, $useEnvFile=true) {
         $filename = realpath($filename);
         $envFilename = null;
         if ($useEnvFile) {
@@ -87,12 +86,26 @@ class Toolbox {
                 $filename = $envFilename;
             }
         }
+        return $filename;
+    }
 
+    /**
+     * Load a <em>YAML</em> file and automatically merge any <code>environment</code> settings contained.
+     *
+     * @param string filename The file to load.
+     * @param string environment Optional environment; default is the value of <code>ZM_ENVIRONMENT</code>.
+     * @param boolean useEnvFile Optional flag to load the <em>file_[$environemnt].yaml</em> file if available; default is <code>true</code>.
+     * @param boolean clearImports Optional flag to remove imports details from the loaded data before returning; default is <code>true</code>.
+     * @return mixed The parsed YAML.
+     */
+    public static function loadWithEnv($filename, $environment=ZM_ENVIRONMENT, $useEnvFile=true, $clearImports=true) {
         $data = array();
+
+        $filename = self::getEnvFilename($filename, $environment, $useEnvFile);
         if (!file_exists($filename)) {
             return $data;
         }
-        $environment = strtoupper($environment);
+
         try {
             $yaml = Yaml::load($filename);
             if (is_array($yaml)) {
