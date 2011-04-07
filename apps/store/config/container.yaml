@@ -102,10 +102,12 @@ zenmagick.settings:
     sacs:
       handler:
         - ZMZenCartAccountSacsHandler
+
 zenmagick.apps:
   store:
     themes:
       default: default
+
 # database configuration settings
 # @todo allow symbolic names for the fully qualified classes mentioned here?
 zenmagick.doctrine:
