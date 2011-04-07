@@ -110,12 +110,9 @@ ZMLoader::instance()->addPath(ZM_BASE_PATH.trim($name).DIRECTORY_SEPARATOR);
     }
 
     // load application config
-    Runtime::getSettings()->setAll(Toolbox::loadWithEnv(Runtime::getApplicationPath().DIRECTORY_SEPARATOR.'config/config.yaml'));
     $containerConfig = Runtime::getApplicationPath().DIRECTORY_SEPARATOR.'config'.DIRECTORY_SEPARATOR.'container.yaml';
-    if (file_exists($containerConfig)) {
-        $containerYamlLoader = new YamlFileLoader(Runtime::getContainer(), dirname($containerConfig));
-        $containerYamlLoader->load($containerConfig);
-    }
+    $containerYamlLoader = new YamlFileLoader(Runtime::getContainer(), dirname($containerConfig));
+    $containerYamlLoader->load(Toolbox::getEnvFilename($containerConfig));
 
     // hook up default event listeners
     foreach (Runtime::getSettings()->get('zenmagick.base.events.listeners', array()) as $_zm_elc) {
