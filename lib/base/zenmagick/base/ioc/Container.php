@@ -47,12 +47,6 @@ class Container extends ContainerBuilder {
         ContainerBuilder::registerExtension(new ZenMagickExtension());
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    public function compile() {
-        //TODO: remove
-    }
 
     /**
      * {@inheritDoc}

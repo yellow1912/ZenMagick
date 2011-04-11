@@ -68,9 +68,9 @@ class ZMEventFixes extends ZMObject {
     }
 
     /**
-     * Fake theme resolved event if using zen-cart templates and handle persisted messages.
+     * Theme init.
      */
-    public function onInitDone($event) {
+    public function initThemes($event) {
         $request = $event->get('request');
 
         if (!ZMsettings::get('isEnableZMThemes', true)) {
@@ -246,6 +246,7 @@ class ZMEventFixes extends ZMObject {
         $this->fixCategoryPath($request);
         $this->checkAuthorization($request);
         $this->configureLocale($request);
+        $this->initThemes($event);
     }
 
     /**
