@@ -15,7 +15,6 @@
  * Foundation, Inc., 51 Franklin Street - Fifth Floor, Boston, MA  02110-1301, USA.
  */
 use zenmagick\base\Runtime;
-use zenmagick\apps\store\bundles\ZenCartBundle\ZenCartBundle;
 
 /**
  * Cleaned up version of the Zen Cart auto loader
@@ -24,14 +23,14 @@ use zenmagick\apps\store\bundles\ZenCartBundle\ZenCartBundle;
  */
 ksort($autoLoadConfig);
 
-$session = Runtime::getcontainer()->get('session');
+$autoLoader = Runtime::getContainer()->get('zencartAutoLoader');
+$session = Runtime::getContainer()->get('session');
 
-
+extract($autoLoader->getGlobalValues());
 foreach ($autoLoadConfig as $actionPoint => $row) {
     foreach($row as $entry) {
-        if (isset($entry['loaderPrefix']) && ($entry['loaderPrefix'] != $loaderPrefix)) continue;
-        $files = array();
         $require = false;
+        $files = array();
         switch($entry['autoType']) {
             case 'classInstantiate':
                 if(!isset($entry['checkInstantiated'])) $entry['checkInstantiated'] = false;
@@ -44,7 +43,7 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
                     }
                 } else {
                     $$objectName = new $className();
-                    $GLOBALS[$objectName] = $$objectName;
+                    $autoLoader->setGlobalValue($objectName, $$objectName);
                 }
             break;
             case 'objectMethod':
@@ -57,42 +56,21 @@ foreach ($autoLoadConfig as $actionPoint => $row) {
                     $$objectName->$methodName();
                 }
             break;
-            case 'service': // simple container service support with no ability to set arguments.
-                if (!isset($entry['name'])) break;
-
-                $method = isset($entry['method']) ? $entry['method'] : null;
-                $resultVar = isset($entry['resultVar']) ? $entry['resultVar'] : null;
-                if (null != $method) {
-                    $loaderResultVar = Runtime::getContainer()->get($entry['name'])->$method();
-                } else {
-                    $loaderResultVar = Runtime::getContainer()->get($entry['name']);
-                }
-                if (null != $resultVar) {
-                    $$resultVar = $loaderResultVar;
-                    if (isset($entry['session']) && $entry['session']) {
-                        $session->setValue($resultVar, $loaderResultVar);
-                    } else {
-                        $GLOBALS[$resultVar] = $loaderResultVar;
-                    }
-                } else {
-                    unset($loaderResultVar);
-                }
-            break;
             case 'init_script':
-                $files = ZenCartBundle::resolveFiles('includes/init_includes/'.$entry['loadFile']);
+                $files = $autoLoader->resolveFiles('includes/init_includes/'.$entry['loadFile']);
             break;
             case 'class':
-                $files = ZenCartBundle::resolveFiles('includes/classes/'.$entry['loadFile']);
+                $files = $autoLoader->resolveFiles('includes/classes/'.$entry['loadFile']);
             break;
             case 'require':
                 $require = true;
             case 'include':
             case 'include_glob':
-                $files = ZenCartBundle::resolveFiles($entry['loadFile']);
+                $files = $autoLoaderresolveFiles($entry['loadFile']);
             break;
         }
         if (!empty($files)) {
-            $once = isset($entry['once']) && $entry['once'];
+            if (!isset($entry['once'])) $entry['once'] = true;
             foreach ($files as $file) {
                 if ($require) {
                     if ($once) {
