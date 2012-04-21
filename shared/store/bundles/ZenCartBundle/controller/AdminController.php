@@ -29,6 +29,46 @@ use zenmagick\base\Runtime;
  */
 class AdminController extends \ZMController {
 
+    public function getViewData($request) {
+        /**
+         * Boot the ZenCart admin
+         */
+        $this->container->get('productTypeLayoutService')->defineAll();
+
+        $autoLoader = $this->container->get('zencartAutoLoader');
+        $autoLoader->setErrorLevel();
+
+        $autoLoader->includeFiles('../includes/configure.php');
+        $autoLoader->includeFiles('../includes/version.php'); // used by the paypal modules!
+        $autoLoader->includeFiles('includes/extra_configures/*.php');
+        $autoLoader->includeFiles('../includes/filenames.php');
+        $autoLoader->includeFiles('includes/extra_datafiles/*.php');
+        $autoLoader->includeFiles('includes/functions/extra_functions/*.php');
+        $autoLoader->includeFiles('includes/functions/{general.php,database.php,functions_customers.php,functions_metatags.php,functions_prices.php,html_output.php,localization.php,password_funcs.php}');
+        $autoLoader->includeFiles('../includes/functions/{audience.php,banner.php,featured.php,functions_email.php,salemaker.php,sessions.php,specials.php,zen_mail.php}');
+
+
+        $themeService = $this->container->get('themeService');
+        $themeService->initThemes();
+        $themeId = $themeService->getActiveThemeId();
+        define('DIR_WS_TEMPLATE', DIR_WS_TEMPLATES.$themeId.'/');
+        define('DIR_WS_TEMPLATE_IMAGES', DIR_WS_TEMPLATE.'images/');
+        define('DIR_WS_TEMPLATE_ICONS', DIR_WS_TEMPLATE_IMAGES.'icons/');
+        $autoLoader->setGlobalValue('template_dir', $themeId);
+        $autoLoader->setGlobalValue('PHP_SELF', $request->getRequestId());
+
+        $autoLoader->restoreErrorLevel();
+
+        $autoLoader->setGlobalValue('zc_products', new \products);
+
+        $tpl = array('autoLoader' => $autoLoader);
+        foreach($autoLoader->getGlobalValues() as $k => $v) {
+            $tpl[$k] = $v;
+        }
+        return $tpl;
+    }
+
+
     /**
      * {@inheritDoc}
      */
@@ -40,18 +80,17 @@ class AdminController extends \ZMController {
             }
         }
 
-        $this->container->get('themeService')->initThemes();
 
         $session = $request->getSession();
-
-        if (null == $session->getValue('securityToken')) {
-            $session->setValue('securityToken', $session->getToken());
-        }
-
         $language = $request->getSelectedLanguage();
         $session->setValue('language', $language->getDirectory());
         $session->setValue('languages_id', $language->getId());
         $session->setValue('languages_code', $language->getCode());
+
+
+        if (null == $session->getValue('securityToken')) {
+            $session->setValue('securityToken', $session->getToken());
+        }
 
         // strangely whos_online is the only user. @todo test ZM version of whos_online
         $session->setValue('currency', Runtime::getSettings()->get('defaultCurrency'));
@@ -68,11 +107,7 @@ class AdminController extends \ZMController {
         // @todo add option to store data in $_SESSION for zc admin too so the values can be used bidirectionally
         $_SESSION = $session->getData();
 
-        $cPath = (string)$request->getCategoryPath();
-        $current_category_id = $request->getCategoryId();
-        $cPath_array = $request->getCategoryPathArray();
-
-        $tpl = compact('current_category_id', 'cPath', 'cPath_array');
+        $tpl = array();
         $view = $this->findView('zc_admin', $tpl);
         // no layout for invoice/packaging slip
         if (in_array($request->getRequestId(), Runtime::getSettings()->get('apps.store.zencart.skipLayout', array()))) {

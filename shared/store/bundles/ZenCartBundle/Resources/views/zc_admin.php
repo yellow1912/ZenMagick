@@ -31,13 +31,19 @@ $adminWeb = substr(sprintf('%s/%s', $baseContext, $adminDir), 1);
 $zcAdminPath = $zcPath.'/'.$adminDir.'/';
 $zcPage = $request->getRequestId().'.php';
 chdir($zcAdminPath);
+$autoLoader->setErrorLevel();
+// need the language files in a local context
+$autoLoader->includeFiles('includes/languages/%language%.php');
+$autoLoader->includeFiles('includes/languages/%language%/%current_page%.php');
+$autoLoader->includeFiles('includes/languages/%language%/extra_definitions/*.php');
+
 
 global $currencies;
 define('TEXT_EDITOR_INFO', ''); // hide text editor box
 $PHP_SELF = $zcAdminPath.$zcPage;
 $code = file_get_contents($zcAdminPath.$zcPage);
 $code = preg_replace("/<!doctype[^>]*>/s", '', $code);
-$code = preg_replace("/require\(.*application_top.php'\s*\);/", "require('".Runtime::getInstallationPath().'/shared/store/bundles/ZenCartBundle/bridge/includes/application_top.php'."');", $code);
+$code = preg_replace("/require\(.*application_top.php'\s*\);/", "", $code);
 $code = preg_replace("/require\(.*header.php'\s*\);/", '', $code);
 $code = preg_replace("/require\(.*footer.php'\s*\);/", '', $code);
 $code = preg_replace("/<\/body>\s*<\/html>/s", '', $code);
@@ -96,3 +102,4 @@ function check_form() {
     <div id="hoverJS"></div>
     <script type="text/javascript"> function cssjsmenu(foo) {}; init(); </script>
 <?php } ?>
+<?php $autoLoader->restoreErrorLevel(); ?>
