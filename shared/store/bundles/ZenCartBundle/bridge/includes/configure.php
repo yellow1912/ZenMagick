@@ -8,7 +8,7 @@ $zcPath = $settings->get('apps.store.zencart.path');
  * admin/storefront configure.php defines
  */
 define('DB_TYPE', 'mysql');
-define('IS_ADMIN_FLAG', Runtime::isContextMatch('admin'));
+if (!defined('IS_ADMIN_FLAG')) define('IS_ADMIN_FLAG', Runtime::isContextMatch('admin'));
 
 // @todo we want this to be here!
 //define('DB_PREFIX', $settings->get('apps.store.database.default.prefix'));
@@ -67,11 +67,10 @@ define('DIR_FS_EMAIL_TEMPLATES', DIR_FS_CATALOG.'email/');
 define('DIR_FS_SQL_CACHE', $zcPath.'/cache/');
 define('DIR_FS_UPLOADS', DIR_FS_CATALOG.DIR_WS_UPLOADS);
 
-define('SQL_CACHE_METHOD', 'none'); // none,database,file
-
-define('DIR_WS_TEMPLATE', DIR_WS_TEMPLATES.Runtime::getContainer()->get('themeService')->getActiveThemeId().'/');
-define('DIR_WS_TEMPLATE_IMAGES', DIR_WS_TEMPLATE.'images/');
-define('DIR_WS_TEMPLATE_ICONS', DIR_WS_TEMPLATE_IMAGES.'icons/');
+// @todo bring this back later once zenmagick no longer requires any zc bits
+//define('DIR_WS_TEMPLATE', DIR_WS_TEMPLATES.Runtime::getContainer()->get('themeService')->getActiveThemeId().'/');
+//define('DIR_WS_TEMPLATE_IMAGES', DIR_WS_TEMPLATE.'images/');
+//define('DIR_WS_TEMPLATE_ICONS', DIR_WS_TEMPLATE_IMAGES.'icons/');
 
 define('CHARSET', $settings->get('zenmagick.http.html.charset'));
 

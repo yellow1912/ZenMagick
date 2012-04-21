@@ -67,87 +67,13 @@ class ZenCartBundle extends Bundle {
         if (!defined('UPLOAD_PREFIX')) { define('UPLOAD_PREFIX', 'upload_'); }
     }
 
-    public static function buildSearchPaths($base = '') {
-        $settingsService = Runtime::getSettings();
-        $zcPath = $settingsService->get('apps.store.zencart.path');
-        $dirs = array(dirname(__FILE__).'/bridge', $zcPath);
-        if (Runtime::isContextMatch('admin')) {
-            $adminDir = $settingsService->get('apps.store.zencart.admindir');
-            $adminDirs = array(dirname(__FILE__).'/bridge/admin', $zcPath.'/'.$adminDir);
-            $dirs = false !== strpos($base, 'classes') ? array_merge($adminDirs, $dirs) : $adminDirs;
-        }
-
-        $overrides = (false !== strpos($base, 'auto_loaders') || false !== strpos($base, 'init_includes'));
-        $searchPaths = array();
-        foreach ($dirs as $dir) {
-            if ($overrides) {
-                $searchPaths[] = $dir.'/'.$base.'/overrides';
-            }
-            $searchPaths[] = $dir.'/'.$base;
-        }
-        return $searchPaths;
-    }
-
-    /**
-     * Resolve some templated file vars
-     *
-     *
-     * @todo refactor this into a different class
-     */
-    public static function resolveFileVars($string) {
-        $container = Runtime::getContainer();
-        $request = $container->get('request');
-        $map = array();
-        $map['%current_page%'] = $request->getRequestId();
-        $map['%language%'] = $request->getSelectedLanguage()->getDirectory();
-        $map['%template_dir%'] = $container->get('themeService')->getActiveThemeId();
-        return str_replace(array_keys($map), array_values($map), $string);
-    }
-
-    /**
-     * Find Zen Cart init system files
-     *
-     * We check our bridge directory before falling back on ZenCart native files
-     *
-     * @param mixed string|array $paths path or paths to file or files, can be a glob.
-     * @returns array array of absolute paths to files indexed by file basename.
-     */
-    public static function resolveFiles($paths) {
-        $files = array();
-
-        foreach ((array)$paths as $path) {
-            $path = self::resolveFileVars($path);
-            $file = basename($path);
-            $relative = dirname($path);
-            $checkRoots = self::buildSearchPaths($relative);
-            foreach ($checkRoots as $root) {
-                foreach (glob($root . '/' .  $file, GLOB_BRACE) as $found) {
-                    if (isset($files[basename($found)])) continue;
-                    $files[basename($found)] = realpath($found);
-                }
-            }
-        }
-        return $files;
-    }
-
-    /**
-     * Find a ZenCart init file.
-     *
-     * This just wraps resolveFiles and returns a single result.
-     *
-     * @see self::resolveFiles
-     */
-    public static function resolveFile($paths) {
-        $file = current(self::resolveFiles($paths));
-        return $file;
-    }
-
     /**
      * Prepare db config
      */
     public function onInitConfigDone($event) {
         $yaml = array('services' => array(
-            'zenCartThemeStatusMapBuilder' => array('parent' => 'merge:themeStatusMapBuilder', 'class' => 'zenmagick\apps\store\bundles\ZenCartBundle\mock\ZenCartThemeStatusMapBuilder')
+            'zenCartThemeStatusMapBuilder' => array('parent' => 'merge:themeStatusMapBuilder', 'class' => 'zenmagick\apps\store\bundles\ZenCartBundle\mock\ZenCartThemeStatusMapBuilder'),
+            'zencartAutoLoader' => array('class' => 'zenmagick\apps\store\bundles\ZenCartBundle\utils\ZenCartAutoLoader'),
         ));
         $yamlLoader = new YamlLoader($this->container, new FileLocator(dirname(__FILE__)));
         $yamlLoader->load($yaml);
@@ -176,15 +102,21 @@ class ZenCartBundle extends Bundle {
                 $settingsService->set('zenmagick.http.request.allSecure', true);
             }
         }
-
-        if (!defined('IS_ADMIN_FLAG')) { define('IS_ADMIN_FLAG', Runtime::isContextMatch('admin')); }
-
-        $zcClassLoader = new ZenCartClassLoader();
-        $zcClassLoader->setBaseDirectories($this->buildSearchPaths('includes/classes'));
-        $zcClassLoader->register();
-
         // include some zencart files we need.
+        if (!defined('IS_ADMIN_FLAG')) { define('IS_ADMIN_FLAG', Runtime::isContextMatch('admin')); }
         include_once $settingsService->get('apps.store.zencart.path').'/includes/database_tables.php';
+        $autoLoader = $this->container->get('zencartAutoLoader');
+        $zcClassLoader = new ZenCartClassLoader();
+        $zcClassLoader->setBaseDirectories($autoLoader->buildSearchPaths('includes/classes'));
+        $zcClassLoader->register();
+        // Set ZC classes used throughout
+        $autoLoader->setGlobalValue('zco_notifier', new \notifier);
+        $autoLoader->setGlobalValue('db', new \queryFactory);
+        $autoLoader->setGlobalValue('messageStack', new \messageStack);
+        $autoLoader->setGlobalValue('template', new \template_func);
+        $autoLoader->setGlobalValue('sniffer', new \sniffer);
+
+
     }
 
     /**
@@ -194,22 +126,32 @@ class ZenCartBundle extends Bundle {
         $request = $event->get('request');
 
         // needed throughout sadly
-        $GLOBALS['session_started'] = true;
-        $GLOBALS['request_type'] = $request->isSecure() ? 'SSL' : 'NONSSL';
-        $GLOBALS['PHP_SELF'] = $_SERVER['PHP_SELF'];
+        $requestId = $request->getRequestId();
+
+        include_once __DIR__.'/bridge/includes/configure.php';
+        $autoLoader = $this->container->get('zencartAutoLoader');
+        $globals = array(
+            'PHP_SELF' => $_SERVER['PHP_SELF'],
+            'cPath' => (string)$request->getCategoryPath(),
+            'cPath_array' => $request->getCategoryPathArray(),
+            'code_page_directory' => DIR_WS_INCLUDES.'modules/pages/'.$requestId,
+            'current_category_id' => $request->getCategoryId(),
+            'current_page_base' => $requestId,
+            // needed by require_languages.php to load per page language files (inside page header_php.php files)
+            'page_directory' => DIR_WS_INCLUDES.'modules/pages/'.$requestId,
+            'request_type' => $request->isSecure ? 'SSL' : 'NONSSL',
+            'session_started' => true,
+        );
+
+        $autoLoader->setGlobalValues($globals);
 
         if (Runtime::isContextMatch('admin')) {
-
             // @todo shouldn't assume we already have a menu, but we have to since the $adminMenu is never checked for emptiness only null
             $adminMenu = $this->container->get('adminMenu');
             $menuLoader = new MenuLoader();
             $menuLoader->load(__DIR__.'/Resources/config/admin/menu.yaml', $adminMenu);
 
         } else {
-            // init_canonical needs this
-            global $current_page;
-            $current_page = $request->getRequestId();
-
             /**
              * only used in the orders class and old email functions
              * @todo move it somewhere else
@@ -218,12 +160,61 @@ class ZenCartBundle extends Bundle {
             if (null == $session->getValue('customers_ip_address')) {
                 $session->setValue('customers_ip_address', $_SERVER['REMOTE_ADDR']);
             }
+
+            $session->setValue('securityToken', $session->getToken());
+
+            $autoLoader->setErrorLevel();
+
+            $autoLoader->includeFiles('includes/version.php'); // used by the paypal modules!
+            $autoLoader->includeFiles('includes/extra_configures/*.php');
+            $autoLoader->includeFiles('includes/filenames.php');
+            $autoLoader->includeFiles('includes/extra_datafiles/*.php');
+            $autoLoader->includeFiles('includes/functions/extra_functions/*.php');
+            $autoLoader->includeFiles('includes/functions/{functions_email.php,functions_general.php,html_output.php,functions_ezpages.php,password_funcs.php,sessions.php,zen_mail.php}');
+            $autoLoader->includeFiles('includes/functions/banner.php');
+
+            $autoLoader->setGlobalValue('currencies', new \currencies);
+
+            if (null == $session->getValue('cart')) {
+                $session->setValue('cart', new \shoppingCart);
+            }
+            if (null == $session->getValue('navigation')) {
+                $session->setValue('navigation', new \navigationHistory);
+            }
+
+            $session->getValue('navigation')->add_current_page();
         }
 
         if (defined('EMAIL_TRANSPORT') && 'Qmail' == EMAIL_TRANSPORT && $this->container->has('swiftmailer.transport')) {
             if (null != ($transport = $this->container->get('swiftmailer.transport')) && $transport instanceof Swift_Transport_SendmailTransport) {
                 $transport->setCommand('/var/qmail/bin/sendmail -t');
             }
+        }
+    }
+
+    public function onDispatchStart($event) {
+        if (Runtime::isContextMatch('storefront')) {
+            // boot the rest of the ZenCart storefront code.
+            $autoLoader = $this->container->get('zencartAutoLoader');
+            $themeId = $this->container->get('themeService')->getActiveThemeId();
+
+            $autoLoader->setErrorLevel();
+            define('DIR_WS_TEMPLATE', DIR_WS_TEMPLATES.$themeId.'/');
+            define('DIR_WS_TEMPLATE_IMAGES', DIR_WS_TEMPLATE.'images/');
+            define('DIR_WS_TEMPLATE_ICONS', DIR_WS_TEMPLATE_IMAGES.'icons/');
+            $autoLoader->setGlobalValue('template_dir', $themeId);
+
+            $autoLoader->includeFiles('includes/classes/db/mysql/define_queries.php');
+            $autoLoader->includeFiles('includes/languages/%template_dir%/%language%.php');
+            $autoLoader->includeFiles('includes/languages/%language%.php');
+            $autoLoader->includeFiles(array(
+                'includes/languages/%language%/extra_definitions/%template_dir%/*.php',
+                'includes/languages/%language%/extra_definitions/*.php')
+            );
+
+            $request = $event->get('request');
+            $autoLoader->setGlobalValue('language_page_directory',DIR_WS_INCLUDES.'languages/'.$request->getSelectedLanguage()->getDirectory().'/');
+            $autoLoader->restoreErrorLevel();
         }
     }
 
