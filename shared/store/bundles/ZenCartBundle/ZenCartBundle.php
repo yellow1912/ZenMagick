@@ -182,7 +182,6 @@ class ZenCartBundle extends Bundle {
             if (null == $session->getValue('navigation')) {
                 $session->setValue('navigation', new \navigationHistory);
             }
-
             $session->getValue('navigation')->add_current_page();
         }
 
