@@ -125,27 +125,8 @@ class ZenCartBundle extends Bundle {
      */
     public function onContainerReady($event) {
         $request = $event->get('request');
-
-        // needed throughout sadly
-        $requestId = $request->getRequestId();
-
         include_once __DIR__.'/bridge/includes/configure.php';
         $autoLoader = $this->container->get('zencartAutoLoader');
-        $globals = array(
-            'PHP_SELF' => $_SERVER['PHP_SELF'],
-            'cPath' => (string)$request->getCategoryPath(),
-            'cPath_array' => $request->getCategoryPathArray(),
-            'code_page_directory' => DIR_WS_INCLUDES.'modules/pages/'.$requestId,
-            'current_category_id' => $request->getCategoryId(),
-            'current_page_base' => $requestId,
-            // needed by require_languages.php to load per page language files (inside page header_php.php files)
-            'page_directory' => DIR_WS_INCLUDES.'modules/pages/'.$requestId,
-            'request_type' => $request->isSecure ? 'SSL' : 'NONSSL',
-            'session_started' => true,
-        );
-
-        $autoLoader->setGlobalValues($globals);
-
         if (Runtime::isContextMatch('admin')) {
             // @todo shouldn't assume we already have a menu, but we have to since the $adminMenu is never checked for emptiness only null
             $adminMenu = $this->container->get('adminMenu');
@@ -194,8 +175,34 @@ class ZenCartBundle extends Bundle {
 
     public function onDispatchStart($event) {
         if (Runtime::isContextMatch('storefront')) {
+            $request = $event->get('request');
+            $requestId = $request->getRequestId();
             // boot the rest of the ZenCart storefront code.
             $autoLoader = $this->container->get('zencartAutoLoader');
+            // distribute these so they are only used where needed instead of globally.
+            $globals = array(
+                'PHP_SELF' => $_SERVER['PHP_SELF'],
+                'cPath' => (string)$request->getCategoryPath(),
+                'cPath_array' => $request->getCategoryPathArray(),
+                'code_page_directory' => DIR_WS_INCLUDES.'modules/pages/'.$requestId,
+                'current_category_id' => $request->getCategoryId(),
+                'current_page_base' => $requestId,
+                // needed by require_languages.php to load per page language files (inside page header_php.php files)
+                'page_directory' => DIR_WS_INCLUDES.'modules/pages/'.$requestId,
+                'request_type' => $request->isSecure ? 'SSL' : 'NONSSL',
+                'session_started' => true,
+            );
+            $autoLoader->setGlobalValues($globals);
+
+            // @todo use overrideGlobals() from symfony request component
+            $_GET['main_page'] = $requestId; // needed (somewhere) to catch routes from the route resolver
+            foreach (array_keys($_GET) as $v) {
+                $_GET[$v] = $request->getParameter($v);
+            }
+            foreach (array_keys($_POST) as $v) {
+                $_POST[$v] = $request->getParameter($v);
+            }
+
             $themeId = $this->container->get('themeService')->getActiveThemeId();
 
             $autoLoader->setErrorLevel();
