@@ -28,6 +28,7 @@ use Swift_Transport_SendmailTransport;
 
 use zenmagick\base\Beans;
 use zenmagick\base\Runtime;
+use zenmagick\base\utils\Executor;
 use zenmagick\base\dependencyInjection\loader\YamlLoader;
 use zenmagick\apps\store\bundles\ZenCartBundle\utils\EmailEventHandler;
 use zenmagick\apps\store\menu\MenuLoader;
@@ -204,6 +205,9 @@ class ZenCartBundle extends Bundle {
             define('DIR_WS_TEMPLATE_ICONS', DIR_WS_TEMPLATE_IMAGES.'icons/');
             $autoLoader->setGlobalValue('template_dir', $themeId);
 
+            $cwd = getcwd();
+            chdir($this->container->get('settingsService')->get('apps.store.zencart.path'));
+            // required for the payment,checkout,shipping modules
             $autoLoader->includeFiles('includes/classes/db/mysql/define_queries.php');
             $autoLoader->includeFiles('includes/languages/%template_dir%/%language%.php');
             $autoLoader->includeFiles('includes/languages/%language%.php');
@@ -211,7 +215,7 @@ class ZenCartBundle extends Bundle {
                 'includes/languages/%language%/extra_definitions/%template_dir%/*.php',
                 'includes/languages/%language%/extra_definitions/*.php')
             );
-
+            chdir($cwd);
             $request = $event->get('request');
             $autoLoader->setGlobalValue('language_page_directory',DIR_WS_INCLUDES.'languages/'.$request->getSelectedLanguage()->getDirectory().'/');
             $autoLoader->restoreErrorLevel();
@@ -219,53 +223,18 @@ class ZenCartBundle extends Bundle {
     }
 
     /**
-     * Things to do after the auto loader is finished, but before going back into index.php
+     * {@inheritDoc}
      */
-    public function onAutoloadDone($event) {
+    public function onControllerProcessStart($event) {
+        if (!Runtime::isContextMatch('storefront')) return;
         $request = $event->get('request');
 
-        // skip more zc request handling
-        if (!$this->needsZC($request) && $this->container->get('settingsService')->get('isEnableZMThemes', false)) {
-            global $code_page_directory;
-            $code_page_directory = 'zenmagick';
-        } else {
-            global $code_page_directory, $current_page_base;
-            $current_page_base = $request->getRequestId();
-            $code_page_directory = 'includes/modules/pages/'.$request->getRequestId();
+        if ($this->isZencartTheme($request) && null != ($dispatcher = $request->getDispatcher())) {
+            $settingsService = $this->container->get('settingsService');
+            $settingsService->set('zenmagick.http.view.defaultLayout', null);
+            $executor = new Executor(array($this->container->get('zenmagick\apps\store\bundles\ZenCartBundle\controller\ZencartStorefrontController'), 'process'), array($request));
+            $dispatcher->setControllerExecutor($executor);
         }
-    }
-
-    /**
-     * Simple function to check if we need zen-cart request processing.
-     *
-     * @param ZMRequest request The current request.
-     * @return boolean <code>true</code> if zen-cart should handle the request.
-     */
-    private function needsZC($request) {
-        if ($this->isZencartTheme($request)) {
-            // this needs some cleanup, obviously
-            $this->container->get('settingsService')->set('isEnableZMThemes', false);
-            return true;
-        }
-
-        $requestId = $request->getRequestId();
-        if (\ZMLangUtils::inArray($requestId, Runtime::getSettings()->get('apps.store.request.enableZCRequestHandling'))) {
-            Runtime::getLogging()->debug('enable zencart request processing for requestId='.$requestId);
-            return true;
-        }
-        if (false === strpos($requestId, 'checkout_') && 'download' != $requestId) {
-            // not checkout
-            return false;
-        }
-
-        // supported by ZenMagick
-        $supportedCheckoutPages = array('checkout_shipping_address', 'checkout_payment_address', 'checkout_payment', 'checkout_shipping');
-
-        $needs = !in_array($requestId, $supportedCheckoutPages);
-        if ($needs) {
-            Runtime::getLogging()->debug('enable zencart request processing for requestId='.$requestId);
-        }
-        return $needs;
     }
 
     /**
@@ -283,5 +252,4 @@ class ZenCartBundle extends Bundle {
         }
         return false;
     }
-
 }
