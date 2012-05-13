@@ -31,6 +31,7 @@ use zenmagick\base\Runtime;
 class ZencartStorefrontController extends \ZMController {
 
     private $controllerFile;
+    private $useZenCartTemplate = false;
 
     /**
      * Override getFormData() for ZenCart pages
@@ -63,9 +64,16 @@ class ZencartStorefrontController extends \ZMController {
         $this->container->get('productTypeLayoutService')->defineAll();
         $autoLoader = $this->container->get('zencartAutoLoader');
 
+        if ('ipn_handler' == $request->getRequestId()) { // @todo handle other common zencart entry points like googlebase
+            $this->controllerFile = $autoLoader->resolveFile('ipn_main_handler.php');
+            return;
+        }
+
         /**
          * Does the page controller exist?
          */
+        $themeMeta = $this->container->get('themeService')->getActiveTheme()->getConfig('meta');
+        $this->useZenCartTemplate = isset($themeMeta['zencart']);
         $controllerFile = $autoLoader->resolveFile('includes/modules/pages/%current_page_base%/header_php.php');
         if (!file_exists($controllerFile)) {
             if (MISSING_PAGE_CHECK == 'On' || MISSING_PAGE_CHECK == 'true') {
@@ -85,10 +93,9 @@ class ZencartStorefrontController extends \ZMController {
      */
     public function processGet($request) {
         $settingsService = $this->container->get('settingsService');
-        $isZenCartTheme = $this->container->get('themeService')->getActiveTheme()->isZencart();
-
+        $useZenCartTemplate = $this->useZenCartTemplate;
         $session = $request->getSession();
-        if ('GET' == $request->getMethod() && $isZenCartTheme) {
+        if ('GET' == $request->getMethod() && $useZenCartTemplate) {
             /**
              * validate products_id for search engines and bookmarks, etc.
              */
@@ -139,7 +146,7 @@ class ZencartStorefrontController extends \ZMController {
         extract($this->getZcViewData($request));
         require($this->controllerFile);
 
-        if ($isZenCartTheme) {
+        if ($useZenCartTemplate) {
             require($template->get_template_dir('html_header.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/html_header.php');
             require($template->get_template_dir('main_template_vars.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/main_template_vars.php');
             require($template->get_template_dir('tpl_main_page.php',DIR_WS_TEMPLATE, $current_page_base,'common'). '/tpl_main_page.php');

@@ -179,6 +179,8 @@ page:
       view: redirect#requestId=checkout_payment
   checkout_process:
     controller: 'zenmagick\apps\store\bundles\ZenCartBundle\controller\ZencartStorefrontController'
+  ipn_handler:
+    controller: 'zenmagick\apps\store\bundles\ZenCartBundle\controller\ZencartStorefrontController'
   checkout_confirmation:
     controller: 'zenmagick\apps\store\storefront\controller\CheckoutConfirmationController'
   redirect:
