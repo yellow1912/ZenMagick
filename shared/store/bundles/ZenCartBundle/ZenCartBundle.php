@@ -222,8 +222,6 @@ class ZenCartBundle extends Bundle {
                 'includes/languages/%language%/extra_definitions/*.php')
             );
             chdir($cwd);
-            $request = $event->get('request');
-            $autoLoader->setGlobalValue('language_page_directory',DIR_WS_INCLUDES.'languages/'.$request->getSelectedLanguage()->getDirectory().'/');
             $autoLoader->restoreErrorLevel();
         }
     }

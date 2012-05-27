@@ -84,6 +84,8 @@ class ZencartStorefrontController extends \ZMController {
             }
             $controllerFile = $autoLoader->resolveFile('includes/modules/pages/%current_page_base%/header_php.php');
         }
+        $autoLoader->setGlobalValue('language_page_directory',DIR_WS_INCLUDES.'languages/'.$request->getSelectedLanguage()->getDirectory().'/');
+
         $this->controllerFile = $controllerFile;
 
     }
