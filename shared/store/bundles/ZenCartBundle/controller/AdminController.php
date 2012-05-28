@@ -49,7 +49,7 @@ class AdminController extends \ZMController {
 
 
         $themeService = $this->container->get('themeService');
-        $themeService->initThemes();
+        $themeService->initThemes($request->getSelectedLanguage());
         $themeId = $themeService->getActiveThemeId();
         define('DIR_WS_TEMPLATE', DIR_WS_TEMPLATES.$themeId.'/');
         define('DIR_WS_TEMPLATE_IMAGES', DIR_WS_TEMPLATE.'images/');
