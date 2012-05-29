@@ -23,7 +23,7 @@ $autoLoadConfig = array();
 $loaderPrefix = isset($loaderPrefix) ? $loaderPrefix : 'config';
 $coreLoaderPrefix = in_array($loaderPrefix, array('config', 'paypal_ipn')) ? 'config' : $loaderPrefix;
 $files = $autoLoader->resolveFiles('includes/auto_loaders/'.$coreLoaderPrefix.'.*.php');
-if ($coreLoaderPrefix == 'config')) {
+if ($coreLoaderPrefix == 'config') {
     unset($files[$coreLoaderPrefix.'.core.php']);
 }
 
