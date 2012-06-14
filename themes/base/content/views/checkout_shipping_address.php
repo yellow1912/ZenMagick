@@ -22,10 +22,10 @@
  */
 ?>
 
-<?php $crumbtrail->addCrumb(_zm('Checkout'), $request->url('checkout_shipping', '', true))->addCrumb(_zm('Shipping Address')) ?>
+<?php $crumbtrail->addCrumb(_zm('Checkout'), $request->url('checkout.shipping', '', true))->addCrumb(_zm('Shipping Address')) ?>
 <?php $currentAddress = $shoppingCart->getShippingAddress(); ?>
 <?php if (0 < count($addressList)) { ?>
-    <?php echo $form->open('checkout_shipping_address', 'action=select', true) ?>
+    <?php echo $form->open('checkout.shipping.address', 'action=select', true) ?>
         <h3><?php _vzm("Select an existing address") ?></h3>
         <fieldset>
             <legend><?php _vzm("Address Book") ?></legend>
@@ -46,7 +46,7 @@
     <h3><?php _vzm("... or create a new one") ?></h3>
 <?php } ?>
 
-<?php echo $form->open('checkout_shipping_address', 'action=create', true, array('id'=>'shippingAddress')) ?>
+<?php echo $form->open('checkout.shipping.address', 'action=create', true, array('id'=>'shippingAddress')) ?>
     <?php echo $this->fetch('views/address.php', array('address' => $shippingAddress)) ?>
     <div class="btn"><input type="submit" class="btn" value="<?php _vzm("Continue") ?>" /></div>
 </form>

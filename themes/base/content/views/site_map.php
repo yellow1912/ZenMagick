@@ -38,7 +38,7 @@
       </ul></li>
         <?php if (!$request->getShoppingCart()->isEmpty()) { ?>
             <li><a href="<?php echo $net->url('shopping_cart', '', true); ?>"><?php _vzm("Shopping cart") ?></a></li>
-            <li><a href="<?php echo $net->url('checkout_shipping', '', true); ?>"><?php _vzm("Checkout") ?></a></li>
+            <li><a href="<?php echo $net->url('checkout.shipping', '', true); ?>"><?php _vzm("Checkout") ?></a></li>
         <?php } ?>
     <?php } ?>
     <li><a href="<?php echo $net->url('advanced_search'); ?>"><?php _vzm("Advanced Search") ?></a></li>

@@ -35,7 +35,7 @@
     <?php } ?>
     <?php if (!$request->getShoppingCart()->isEmpty() && !$request->isCheckout()) { ?>
         <li><a href="<?php echo $net->url('shopping_cart', '', true); ?>"><?php _vzm("SHOPPING CART") ?></a></li>
-        <li><a href="<?php echo $net->url('checkout_shipping', '', true); ?>"><?php _vzm("CHECKOUT") ?></a></li>
+        <li><a href="<?php echo $net->url('checkout.shipping', '', true); ?>"><?php _vzm("CHECKOUT") ?></a></li>
     <?php } ?>
     <?php foreach ($container->get('ezPageService')->getPagesForHeader($session->getLanguageId()) as $page) { ?>
         <li><?php echo $html->ezpageLink($page->getId()) ?></li>

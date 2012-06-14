@@ -153,9 +153,10 @@
 
     <route id="shipping.estimator" pattern="/shipping/estimator">
         <default key="_controller">zenmagick\apps\store\storefront\controller\DefaultController</default>
-        <option key="view">views/popup/shipping_estimator.php</option>
+        <option key="view">views/popup/shipping_estimator.php?layout=popup_layout.php</option>
     </route>
 
+	<!-- ***********************yellow1912 tested up to here -->
     <route id="discount_coupon" pattern="/discount-coupon">
         <default key="_controller">zenmagick\apps\store\storefront\controller\DiscountCouponController</default>
         <option key="view">views/discount_coupon_info.php</option>
@@ -189,6 +190,10 @@
     <route id="checkout.billing" pattern="/checkout/billing">
         <default key="_controller">zenmagick\apps\store\storefront\controller\CheckoutPaymentController</default>
         <option key="view">redirect://checkout.confirmation</option>
+    </route>
+
+	<route id="checkout.confirmation" pattern="/checkout/confirmation">
+        <default key="_controller">zenmagick\apps\store\storefront\controller\CheckoutConfirmationController</default>
     </route>
 
     <route id="checkout.guest" pattern="/checkout/guest">

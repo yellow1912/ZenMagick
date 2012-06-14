@@ -84,7 +84,7 @@ use zenmagick\base\Toolbox;
 <?php if (!$shoppingCart->isVirtual()) { ?>
     <fieldset>
         <legend><?php _vzm("Shipping") ?></legend>
-        <div class="btn"><a class="btn" href="<?php echo $net->url('checkout_shipping', '', true) ?>"><?php _vzm("Change") ?></a></div>
+        <div class="btn"><a class="btn" href="<?php echo $net->url('checkout.shipping', '', true) ?>"><?php _vzm("Change") ?></a></div>
         <br/>
         <?php if (null != ($shippingMethod = $shoppingCart->getSelectedShippingMethod())) { ?>
           <?php echo $html->encode($shippingMethod->getProvider()->getName()) . ': ' . $html->encode($shippingMethod->getName()) ?><br/>
@@ -96,7 +96,7 @@ use zenmagick\base\Toolbox;
     <legend><?php _vzm("Address Information") ?></legend>
     <?php if ($shoppingCart->hasShippingAddress()) { ?>
         <div class="oadr">
-            <div class="btn"><a class="btn" href="<?php echo $net->url('checkout_shipping_address', '', true) ?>"><?php _vzm("Change") ?></a></div>
+            <div class="btn"><a class="btn" href="<?php echo $net->url('checkout.shipping.address', '', true) ?>"><?php _vzm("Change") ?></a></div>
             <h4><?php _vzm("Shipping Address") ?></h4>
             <?php echo $macro->formatAddress($shoppingCart->getShippingAddress()) ?>
         </div>

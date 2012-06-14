@@ -1,0 +1,393 @@
+[Thu, 14 Jun 12 08:27:56 +0200] DEBUG: zenmagick\base\locales\Locale (56): unable to resolve path for locale = "en_NZ"
+[Thu, 14 Jun 12 08:27:56 +0200] TRACE: zenmagick\base\locales\handler\PomoLocale (57): unable to resolve locale path for locale="en_NZ"; basedir=
+[Thu, 14 Jun 12 08:27:57 +0200] DEBUG: zenmagick\base\locales\handler\PomoLocale (100): registering MO: D:\Programming\xampp\htdocs\zm\zenmagick\themes\base\locale\en/messages.mo for domain: storefront
+[Thu, 14 Jun 12 08:27:57 +0200] TRACE: zenmagick\base\locales\handler\PomoLocale (57): unable to resolve locale path for locale="en"; basedir=D:\Programming\xampp\htdocs\zm\zenmagick/themes\demo/locale/en
+[Thu, 14 Jun 12 08:27:57 +0200] TRACE: zenmagick\base\locales\handler\PomoLocale (57): unable to resolve locale path for locale="en"; basedir=D:\Programming\xampp\htdocs\zm\zenmagick/themes\demo/locale/en
+[Thu, 14 Jun 12 08:27:57 +0200] TRACE: zenmagick\http\sacs\SacsManager (100): authorizing requestId: checkout.confirmation
+[Thu, 14 Jun 12 08:27:57 +0200] TRACE: zenmagick\http\sacs\SacsManager (100): evaluated by: zenmagick\apps\store\storefront\http\sacs\StorefrontAccountSacsHandler, result: true
+[Thu, 14 Jun 12 08:27:57 +0200] DEBUG: zenmagick\base\utils\Executor (187): executing zenmagick\apps\store\storefront\controller\CheckoutConfirmationController
+[Thu, 14 Jun 12 08:27:57 +0200] TRACE: ZMUrlManager (292): find mapping: requestId=checkout.confirmation, viewId=, parameter=
+[Thu, 14 Jun 12 08:27:57 +0200] TRACE: ZMUrlManager (193): find view: requestId=checkout.confirmation, viewId=, parameter=
+[Thu, 14 Jun 12 08:27:57 +0200] TRACE: ZMUrlManager (279): find mapping: requestId=checkout.confirmation, viewId=, parameter=
+[Thu, 14 Jun 12 08:27:57 +0200] DEBUG: ZMUrlManager (193): view: &template=views/checkout.confirmation.php&layout=default_layout.php&viewId=
+[Thu, 14 Jun 12 08:27:57 +0200] WARN: ZMController (..): invalid view: views/checkout.confirmation.php, expected: 
+[Thu, 14 Jun 12 08:27:57 +0200] TRACE: ZMUrlManager (193): find view: requestId=checkout.confirmation, viewId=page_not_found.php, parameter=
+[Thu, 14 Jun 12 08:27:57 +0200] TRACE: ZMUrlManager (279): find mapping: requestId=checkout.confirmation, viewId=page_not_found.php, parameter=
+[Thu, 14 Jun 12 08:27:57 +0200] DEBUG: ZMUrlManager (193): view: &template=views/checkout.confirmation.php&layout=default_layout.php&viewId=page_not_found.php
+[Thu, 14 Jun 12 08:27:58 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: default_layout.php
+[Thu, 14 Jun 12 08:27:58 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: head.php
+[Thu, 14 Jun 12 08:27:58 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: head.php
+[Thu, 14 Jun 12 08:27:58 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (54): render block, template: 
+[Thu, 14 Jun 12 08:27:58 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: header.php
+[Thu, 14 Jun 12 08:27:58 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (28): render block, template: 
+[Thu, 14 Jun 12 08:27:58 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: header.php
+[Thu, 14 Jun 12 08:27:58 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: menu.php
+[Thu, 14 Jun 12 08:27:58 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: menu.php
+[Thu, 14 Jun 12 08:27:58 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (70): render block, template: 
+[Thu, 14 Jun 12 08:27:58 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: views/checkout.confirmation.php
+[Thu, 14 Jun 12 08:27:58 +0200] TRACE: zenmagick\base\ZMException (137): empty template filename:
+#0 lib\base\logging\Logging.php(206): zenmagick\base\logging\handler\DefaultLoggingHandler->trace('empty template filename', 5)
+#1 lib\base\ZMException.php(43): zenmagick\base\logging\Logging->trace('empty template filename', 5)
+#2 lib\http\templating\ZMPhpEngine.php(137): zenmagick\base\ZMException->__construct('empty template filename')
+#3 themes\base\content\default_layout.php(80): zenmagick\http\templating\ZMPhpEngine->fetch('views/checkout.confirmation.php')
+#4 lib\http\templating\ZMPhpEngine.php(140): require('themes\base\content\default_layout.php')
+#5 lib\http\templating\ZMPhpEngine.php(70): zenmagick\http\templating\ZMPhpEngine->fetch('default_layout.php', zenmagick\base\dependencyInjection\Container, [zenmagick\http\view\ResourceManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\http\view\ResourceManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\view\ThemeResourceResolver locations={template:=>Array, resource:=>}, properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\http\view\TemplateView properties={viewId=>page_not_found.php}, container=[zenmagick\base\dependencyInjection\Container]], GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+, [zenmagick\apps\store\storefront\http\Session internalStart=1, data={customers_ip_address=>127.0.0.1, currency=>USD, language=>english, languages_id=>1, languages_code=>en, __ZM_TOKEN__=>86134b1c4929b7796e988f5b4577c1f8, securityToken=>86134b1c4929b7796e988f5b4577c1f8, cartID=>56069, cart=>[shoppingCart], navigation=>[navigationHistory], comments=>yay ha ha, messages=>Array, lastUrl=>/, __ZM_AUTO_SAVE_KEY__=>Array, new_products_id_in_cart=>1, cart_country_id=>223, payment=>, cot_gv=>, followUpUrl=>Array, lastSessionId=>bahfgjhc0i60rdkm5pl5gbrqa2, customer_id=>1, customer_default_address_id=>1, customers_authorization=>0, customer_first_name=>vu, account_type=>registered, customer_country_id=>223, customer_zone_id=>19, session=>Array, shoppingCartHash=>13f4145ab55d03ef83fafa25935e23b6, sendto=>1, shipping=>Array, billto=>2, cc_id=>, payment_attempt=>1, order_number_created=>1}, sessionHandler=[zenmagick\apps\store\session\StoreSessionHandler], properties={}, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\base\settings\Settings, [zenmagick\base\locales\handler\PomoLocale properties=, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\base\settings\Settings, [zenmagick\apps\store\storefront\services\MessageService properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\storefront\http\tools\ToolboxCrumbtrail request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\storefront\http\tools\ToolboxMetaTags request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxForm request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxHtml request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxMacro request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxNet request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxUtils request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\http\toolbox\Toolbox, [ZMValidator properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\themes\TemplateManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], 'views/checkout.confirmation.php')
+#6 vendor\symfony\src\Symfony\Component\Templating\DelegatingEngine.php(55): zenmagick\http\templating\ZMPhpEngine->render('default_layout.php', zenmagick\base\dependencyInjection\Container, [zenmagick\http\view\ResourceManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\http\view\ResourceManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\view\ThemeResourceResolver locations={template:=>Array, resource:=>}, properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\http\view\TemplateView properties={viewId=>page_not_found.php}, container=[zenmagick\base\dependencyInjection\Container]], GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+, [zenmagick\apps\store\storefront\http\Session internalStart=1, data={customers_ip_address=>127.0.0.1, currency=>USD, language=>english, languages_id=>1, languages_code=>en, __ZM_TOKEN__=>86134b1c4929b7796e988f5b4577c1f8, securityToken=>86134b1c4929b7796e988f5b4577c1f8, cartID=>56069, cart=>[shoppingCart], navigation=>[navigationHistory], comments=>yay ha ha, messages=>Array, lastUrl=>/, __ZM_AUTO_SAVE_KEY__=>Array, new_products_id_in_cart=>1, cart_country_id=>223, payment=>, cot_gv=>, followUpUrl=>Array, lastSessionId=>bahfgjhc0i60rdkm5pl5gbrqa2, customer_id=>1, customer_default_address_id=>1, customers_authorization=>0, customer_first_name=>vu, account_type=>registered, customer_country_id=>223, customer_zone_id=>19, session=>Array, shoppingCartHash=>13f4145ab55d03ef83fafa25935e23b6, sendto=>1, shipping=>Array, billto=>2, cc_id=>, payment_attempt=>1, order_number_created=>1}, sessionHandler=[zenmagick\apps\store\session\StoreSessionHandler], properties={}, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\base\settings\Settings, [zenmagick\base\locales\handler\PomoLocale properties=, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\base\settings\Settings, [zenmagick\apps\store\storefront\services\MessageService properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\storefront\http\tools\ToolboxCrumbtrail request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\storefront\http\tools\ToolboxMetaTags request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxForm request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxHtml request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxMacro request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxNet request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxUtils request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\http\toolbox\Toolbox, [ZMValidator properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\themes\TemplateManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], 'views/checkout.confirmation.php')
+#7 lib\http\view\TemplateView.php(361): Symfony\Component\Templating\DelegatingEngine->render('default_layout.php', zenmagick\base\dependencyInjection\Container, [zenmagick\http\view\ResourceManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\http\view\ResourceManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\view\ThemeResourceResolver locations={template:=>Array, resource:=>}, properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\http\view\TemplateView properties={viewId=>page_not_found.php}, container=[zenmagick\base\dependencyInjection\Container]], GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+, [zenmagick\apps\store\storefront\http\Session internalStart=1, data={customers_ip_address=>127.0.0.1, currency=>USD, language=>english, languages_id=>1, languages_code=>en, __ZM_TOKEN__=>86134b1c4929b7796e988f5b4577c1f8, securityToken=>86134b1c4929b7796e988f5b4577c1f8, cartID=>56069, cart=>[shoppingCart], navigation=>[navigationHistory], comments=>yay ha ha, messages=>Array, lastUrl=>/, __ZM_AUTO_SAVE_KEY__=>Array, new_products_id_in_cart=>1, cart_country_id=>223, payment=>, cot_gv=>, followUpUrl=>Array, lastSessionId=>bahfgjhc0i60rdkm5pl5gbrqa2, customer_id=>1, customer_default_address_id=>1, customers_authorization=>0, customer_first_name=>vu, account_type=>registered, customer_country_id=>223, customer_zone_id=>19, session=>Array, shoppingCartHash=>13f4145ab55d03ef83fafa25935e23b6, sendto=>1, shipping=>Array, billto=>2, cc_id=>, payment_attempt=>1, order_number_created=>1}, sessionHandler=[zenmagick\apps\store\session\StoreSessionHandler], properties={}, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\base\settings\Settings, [zenmagick\base\locales\handler\PomoLocale properties=, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\base\settings\Settings, [zenmagick\apps\store\storefront\services\MessageService properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\storefront\http\tools\ToolboxCrumbtrail request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\storefront\http\tools\ToolboxMetaTags request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxForm request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxHtml request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxMacro request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxNet request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxUtils request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\http\toolbox\Toolbox, [ZMValidator properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\themes\TemplateManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], 'views/checkout.confirmation.php')
+#8 lib\http\view\TemplateView.php(330): zenmagick\http\view\TemplateView->fetch('default_layout.php', )
+#9 lib\http\Dispatcher.php(151): zenmagick\http\view\TemplateView->generate(GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#10 lib\http\Dispatcher.php(70): zenmagick\http\Dispatcher->handleRequest(GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#11 store.php(30): zenmagick\http\Dispatcher->dispatch(GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#12 D:\Programming\xampp\htdocs\zm\index.php(43): include('store.php')[Thu, 14 Jun 12 08:27:58 +0200] ERROR: zenmagick\http\view\TemplateView (151): failed to fetch template: default_layout.php
+#0 themes\base\content\default_layout.php(80): zenmagick\http\templating\ZMPhpEngine->fetch('views/checkout.confirmation.php')
+#1 lib\http\templating\ZMPhpEngine.php(140): require('themes\base\content\default_layout.php')
+#2 lib\http\templating\ZMPhpEngine.php(70): zenmagick\http\templating\ZMPhpEngine->fetch('default_layout.php', zenmagick\base\dependencyInjection\Container, [zenmagick\http\view\ResourceManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\http\view\ResourceManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\view\ThemeResourceResolver locations={template:=>Array, resource:=>}, properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\http\view\TemplateView properties={viewId=>page_not_found.php}, container=[zenmagick\base\dependencyInjection\Container]], GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+, [zenmagick\apps\store\storefront\http\Session internalStart=1, data={customers_ip_address=>127.0.0.1, currency=>USD, language=>english, languages_id=>1, languages_code=>en, __ZM_TOKEN__=>86134b1c4929b7796e988f5b4577c1f8, securityToken=>86134b1c4929b7796e988f5b4577c1f8, cartID=>56069, cart=>[shoppingCart], navigation=>[navigationHistory], comments=>yay ha ha, messages=>Array, lastUrl=>/, __ZM_AUTO_SAVE_KEY__=>Array, new_products_id_in_cart=>1, cart_country_id=>223, payment=>, cot_gv=>, followUpUrl=>Array, lastSessionId=>bahfgjhc0i60rdkm5pl5gbrqa2, customer_id=>1, customer_default_address_id=>1, customers_authorization=>0, customer_first_name=>vu, account_type=>registered, customer_country_id=>223, customer_zone_id=>19, session=>Array, shoppingCartHash=>13f4145ab55d03ef83fafa25935e23b6, sendto=>1, shipping=>Array, billto=>2, cc_id=>, payment_attempt=>1, order_number_created=>1}, sessionHandler=[zenmagick\apps\store\session\StoreSessionHandler], properties={}, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\base\settings\Settings, [zenmagick\base\locales\handler\PomoLocale properties=, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\base\settings\Settings, [zenmagick\apps\store\storefront\services\MessageService properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\storefront\http\tools\ToolboxCrumbtrail request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\storefront\http\tools\ToolboxMetaTags request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxForm request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxHtml request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxMacro request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxNet request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxUtils request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\http\toolbox\Toolbox, [ZMValidator properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\themes\TemplateManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], 'views/checkout.confirmation.php')
+#3 vendor\symfony\src\Symfony\Component\Templating\DelegatingEngine.php(55): zenmagick\http\templating\ZMPhpEngine->render('default_layout.php', zenmagick\base\dependencyInjection\Container, [zenmagick\http\view\ResourceManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\http\view\ResourceManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\view\ThemeResourceResolver locations={template:=>Array, resource:=>}, properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\http\view\TemplateView properties={viewId=>page_not_found.php}, container=[zenmagick\base\dependencyInjection\Container]], GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+, [zenmagick\apps\store\storefront\http\Session internalStart=1, data={customers_ip_address=>127.0.0.1, currency=>USD, language=>english, languages_id=>1, languages_code=>en, __ZM_TOKEN__=>86134b1c4929b7796e988f5b4577c1f8, securityToken=>86134b1c4929b7796e988f5b4577c1f8, cartID=>56069, cart=>[shoppingCart], navigation=>[navigationHistory], comments=>yay ha ha, messages=>Array, lastUrl=>/, __ZM_AUTO_SAVE_KEY__=>Array, new_products_id_in_cart=>1, cart_country_id=>223, payment=>, cot_gv=>, followUpUrl=>Array, lastSessionId=>bahfgjhc0i60rdkm5pl5gbrqa2, customer_id=>1, customer_default_address_id=>1, customers_authorization=>0, customer_first_name=>vu, account_type=>registered, customer_country_id=>223, customer_zone_id=>19, session=>Array, shoppingCartHash=>13f4145ab55d03ef83fafa25935e23b6, sendto=>1, shipping=>Array, billto=>2, cc_id=>, payment_attempt=>1, order_number_created=>1}, sessionHandler=[zenmagick\apps\store\session\StoreSessionHandler], properties={}, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\base\settings\Settings, [zenmagick\base\locales\handler\PomoLocale properties=, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\base\settings\Settings, [zenmagick\apps\store\storefront\services\MessageService properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\storefront\http\tools\ToolboxCrumbtrail request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\storefront\http\tools\ToolboxMetaTags request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxForm request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxHtml request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxMacro request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxNet request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxUtils request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\http\toolbox\Toolbox, [ZMValidator properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\themes\TemplateManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], 'views/checkout.confirmation.php')
+#4 lib\http\view\TemplateView.php(361): Symfony\Component\Templating\DelegatingEngine->render('default_layout.php', zenmagick\base\dependencyInjection\Container, [zenmagick\http\view\ResourceManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\http\view\ResourceManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\view\ThemeResourceResolver locations={template:=>Array, resource:=>}, properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\http\view\TemplateView properties={viewId=>page_not_found.php}, container=[zenmagick\base\dependencyInjection\Container]], GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+, [zenmagick\apps\store\storefront\http\Session internalStart=1, data={customers_ip_address=>127.0.0.1, currency=>USD, language=>english, languages_id=>1, languages_code=>en, __ZM_TOKEN__=>86134b1c4929b7796e988f5b4577c1f8, securityToken=>86134b1c4929b7796e988f5b4577c1f8, cartID=>56069, cart=>[shoppingCart], navigation=>[navigationHistory], comments=>yay ha ha, messages=>Array, lastUrl=>/, __ZM_AUTO_SAVE_KEY__=>Array, new_products_id_in_cart=>1, cart_country_id=>223, payment=>, cot_gv=>, followUpUrl=>Array, lastSessionId=>bahfgjhc0i60rdkm5pl5gbrqa2, customer_id=>1, customer_default_address_id=>1, customers_authorization=>0, customer_first_name=>vu, account_type=>registered, customer_country_id=>223, customer_zone_id=>19, session=>Array, shoppingCartHash=>13f4145ab55d03ef83fafa25935e23b6, sendto=>1, shipping=>Array, billto=>2, cc_id=>, payment_attempt=>1, order_number_created=>1}, sessionHandler=[zenmagick\apps\store\session\StoreSessionHandler], properties={}, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\base\settings\Settings, [zenmagick\base\locales\handler\PomoLocale properties=, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\base\settings\Settings, [zenmagick\apps\store\storefront\services\MessageService properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\storefront\http\tools\ToolboxCrumbtrail request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\storefront\http\tools\ToolboxMetaTags request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxForm request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxHtml request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxMacro request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxNet request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\toolbox\ToolboxUtils request_=[zenmagick\apps\store\storefront\http\Request], toolbox_=[zenmagick\http\toolbox\Toolbox], view_=[zenmagick\http\view\TemplateView], properties={}, container=[zenmagick\base\dependencyInjection\Container]], zenmagick\http\toolbox\Toolbox, [ZMValidator properties={}, container=[zenmagick\base\dependencyInjection\Container]], [zenmagick\apps\store\themes\TemplateManager properties={}, container=[zenmagick\base\dependencyInjection\Container]], 'views/checkout.confirmation.php')
+#5 lib\http\view\TemplateView.php(330): zenmagick\http\view\TemplateView->fetch('default_layout.php', )
+#6 lib\http\Dispatcher.php(151): zenmagick\http\view\TemplateView->generate(GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#7 lib\http\Dispatcher.php(70): zenmagick\http\Dispatcher->handleRequest(GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#8 store.php(30): zenmagick\http\Dispatcher->dispatch(GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#9 D:\Programming\xampp\htdocs\zm\index.php(43): include('store.php')
+[Thu, 14 Jun 12 08:27:58 +0200] TRACE: zenmagick\base\ZMException (345): failed to fetch template: default_layout.php:
+#0 lib\base\logging\Logging.php(206): zenmagick\base\logging\handler\DefaultLoggingHandler->trace('failed to fetch template: default_layout.php', 5)
+#1 lib\base\ZMException.php(43): zenmagick\base\logging\Logging->trace('failed to fetch template: default_layout.php', 5)
+#2 lib\http\view\TemplateView.php(345): zenmagick\base\ZMException->__construct('failed to fetch template: default_layout.php', 0, [zenmagick\base\ZMException message=empty template filename, file=lib\http\templating\ZMPhpEngine.php, line=137, previous=])
+#3 lib\http\Dispatcher.php(151): zenmagick\http\view\TemplateView->generate(GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#4 lib\http\Dispatcher.php(70): zenmagick\http\Dispatcher->handleRequest(GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#5 store.php(30): zenmagick\http\Dispatcher->dispatch(GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#6 D:\Programming\xampp\htdocs\zm\index.php(43): include('store.php')[Thu, 14 Jun 12 08:27:58 +0200] ERROR: zenmagick\http\Dispatcher (70): view::generate failed: [zenmagick\base\ZMException message=failed to fetch template: default_layout.php, file=lib\http\view\TemplateView.php, line=345, previous=[zenmagick\base\ZMException message=empty template filename, file=lib\http\templating\ZMPhpEngine.php, line=137, previous=]]
+#0 lib\http\Dispatcher.php(151): zenmagick\http\view\TemplateView->generate(GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#1 lib\http\Dispatcher.php(70): zenmagick\http\Dispatcher->handleRequest(GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#2 store.php(30): zenmagick\http\Dispatcher->dispatch(GET /checkout/confirmation HTTP/1.1
+Accept:          text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Cache-Control:   max-age=0
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+Referer:         http://zm.local/cart
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#3 D:\Programming\xampp\htdocs\zm\index.php(43): include('store.php')
+[Thu, 14 Jun 12 08:28:00 +0200] DEBUG: zenmagick\base\locales\Locale (56): unable to resolve path for locale = "en_NZ"
+[Thu, 14 Jun 12 08:28:00 +0200] TRACE: zenmagick\base\locales\handler\PomoLocale (57): unable to resolve locale path for locale="en_NZ"; basedir=
+[Thu, 14 Jun 12 08:28:00 +0200] DEBUG: zenmagick\base\locales\handler\PomoLocale (100): registering MO: D:\Programming\xampp\htdocs\zm\zenmagick\themes\base\locale\en/messages.mo for domain: storefront
+[Thu, 14 Jun 12 08:28:00 +0200] TRACE: zenmagick\base\locales\handler\PomoLocale (57): unable to resolve locale path for locale="en"; basedir=D:\Programming\xampp\htdocs\zm\zenmagick/themes\demo/locale/en
+[Thu, 14 Jun 12 08:28:00 +0200] TRACE: zenmagick\base\locales\handler\PomoLocale (57): unable to resolve locale path for locale="en"; basedir=D:\Programming\xampp\htdocs\zm\zenmagick/themes\demo/locale/en
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\routing\RouteResolver (38): no route found
+#0 vendor\symfony\src\Symfony\Component\Routing\Router.php(180): Symfony\Component\Routing\Matcher\UrlMatcher->match('/favicon.ico')
+#1 lib\http\routing\RouteResolver.php(91): Symfony\Component\Routing\Router->match('/favicon.ico')
+#2 lib\http\request\rewriter\RoutingUrlRewriter.php(38): zenmagick\http\routing\RouteResolver->getRouterMatch('/favicon.ico')
+#3 lib\mvc\ZMRequest.php(175): zenmagick\http\request\rewriter\RoutingUrlRewriter->decode(GET /favicon.ico HTTP/1.1
+Accept:          */*
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#4 init.php(36): ZMRequest->urlDecode()
+#5 shared\store\bundles\ZenCartBundle\bridge\includes\application_top.php(23): include('init.php')
+#6 D:\Programming\xampp\htdocs\zm\includes\application_top.php(1): require('shared\store\bundles\ZenCartBundle\bridge\includes\application_top.php')
+#7 D:\Programming\xampp\htdocs\zm\index.php(26): require('D:\Programming\xampp\htdocs\zm\includes\application_top.php')
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\sacs\SacsManager (100): authorizing requestId: index
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\sacs\SacsManager (100): evaluated by: zenmagick\apps\store\storefront\http\sacs\StorefrontAccountSacsHandler, result: true
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: ZMUrlManager (245): find controller: requestId=index
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: ZMUrlManager (238): find mapping: requestId=index, viewId=, parameter=
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: ZMUrlManager (245): controller definition: zenmagick\apps\store\storefront\controller\IndexController, zenmagick\apps\storefront\controller\IndexController, ZMIndexController, defaultController; controller: zenmagick\apps\store\storefront\controller\IndexController
+[Thu, 14 Jun 12 08:28:01 +0200] DEBUG: zenmagick\base\utils\Executor (187): executing zenmagick\apps\store\storefront\controller\IndexController
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: ZMUrlManager (292): find mapping: requestId=index, viewId=, parameter=
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: ZMUrlManager (193): find view: requestId=index, viewId=, parameter=
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: ZMUrlManager (279): find mapping: requestId=index, viewId=, parameter=
+[Thu, 14 Jun 12 08:28:01 +0200] DEBUG: ZMUrlManager (193): view: &template=views/index.php&layout=default_layout.php&viewId=
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: default_layout.php
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: head.php
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: head.php
+[Thu, 14 Jun 12 08:28:01 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (54): render block, template: 
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: header.php
+[Thu, 14 Jun 12 08:28:01 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (28): render block, template: 
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: header.php
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: menu.php
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: menu.php
+[Thu, 14 Jun 12 08:28:01 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (70): render block, template: 
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: views/index.php
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: views/index.php
+[Thu, 14 Jun 12 08:28:01 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (83): render block, template: 
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: footer.php
+[Thu, 14 Jun 12 08:28:01 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (32): render block, template: 
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: footer.php
+[Thu, 14 Jun 12 08:28:01 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (89): render block, template: 
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: default_layout.php
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\view\ResourceManager (276): resolved file "site.css" as url: /zenmagick/themes/base/content/site.css; path=D:\Programming\xampp\htdocs\zm\zenmagick\themes\base\content\site.css
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\view\ResourceManager (276): resolved file "ie.css" as url: /zenmagick/themes/base/content/ie.css; path=D:\Programming\xampp\htdocs\zm\zenmagick\themes\base\content\ie.css
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\view\ResourceManager (276): resolved file "theme.css" as url: /zenmagick/themes/demo/content/theme.css; path=D:\Programming\xampp\htdocs\zm\zenmagick\themes\demo\content\theme.css
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\view\ResourceManager (276): resolved file "css/index.css" as url: /zenmagick/themes/demo/content/css/index.css; path=D:\Programming\xampp\htdocs\zm\zenmagick\themes\demo\content\css\index.css
+[Thu, 14 Jun 12 08:28:01 +0200] TRACE: zenmagick\http\view\ResourceManager (257): resolved file "common.js" as url: /zenmagick/themes/base/content/common.js; path=D:\Programming\xampp\htdocs\zm\zenmagick\themes\base\content\common.js
+[Thu, 14 Jun 12 08:28:02 +0200] DEBUG: zenmagick\base\locales\Locale (56): unable to resolve path for locale = "en_NZ"
+[Thu, 14 Jun 12 08:28:02 +0200] TRACE: zenmagick\base\locales\handler\PomoLocale (57): unable to resolve locale path for locale="en_NZ"; basedir=
+[Thu, 14 Jun 12 08:28:02 +0200] DEBUG: zenmagick\base\locales\handler\PomoLocale (100): registering MO: D:\Programming\xampp\htdocs\zm\zenmagick\themes\base\locale\en/messages.mo for domain: storefront
+[Thu, 14 Jun 12 08:28:02 +0200] TRACE: zenmagick\base\locales\handler\PomoLocale (57): unable to resolve locale path for locale="en"; basedir=D:\Programming\xampp\htdocs\zm\zenmagick/themes\demo/locale/en
+[Thu, 14 Jun 12 08:28:02 +0200] TRACE: zenmagick\base\locales\handler\PomoLocale (57): unable to resolve locale path for locale="en"; basedir=D:\Programming\xampp\htdocs\zm\zenmagick/themes\demo/locale/en
+[Thu, 14 Jun 12 08:28:02 +0200] TRACE: zenmagick\http\routing\RouteResolver (38): no route found
+#0 vendor\symfony\src\Symfony\Component\Routing\Router.php(180): Symfony\Component\Routing\Matcher\UrlMatcher->match('/favicon.ico')
+#1 lib\http\routing\RouteResolver.php(91): Symfony\Component\Routing\Router->match('/favicon.ico')
+#2 lib\http\request\rewriter\RoutingUrlRewriter.php(38): zenmagick\http\routing\RouteResolver->getRouterMatch('/favicon.ico')
+#3 lib\mvc\ZMRequest.php(175): zenmagick\http\request\rewriter\RoutingUrlRewriter->decode(GET /favicon.ico HTTP/1.1
+Accept:          */*
+Accept-Charset:  UTF-8,*;q=0.5
+Accept-Encoding: gzip,deflate,sdch
+Accept-Language: en-US,en;q=0.8,vi-VN;q=0.6,vi;q=0.4,ja;q=0.2
+Connection:      keep-alive
+Cookie:          zenid=k4h13dn268vkj3vbhtrfuoe2k1; zmAdmin=0g29it5od4idqnh50njro9um17; zmsid=jtgjii9flkbnudpv1mn4j6qju6
+Host:            zm.local
+User-Agent:      Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/536.5 (KHTML, like Gecko) Chrome/19.0.1084.56 Safari/536.5
+
+)
+#4 init.php(36): ZMRequest->urlDecode()
+#5 shared\store\bundles\ZenCartBundle\bridge\includes\application_top.php(23): include('init.php')
+#6 D:\Programming\xampp\htdocs\zm\includes\application_top.php(1): require('shared\store\bundles\ZenCartBundle\bridge\includes\application_top.php')
+#7 D:\Programming\xampp\htdocs\zm\index.php(26): require('D:\Programming\xampp\htdocs\zm\includes\application_top.php')
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\sacs\SacsManager (100): authorizing requestId: index
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\sacs\SacsManager (100): evaluated by: zenmagick\apps\store\storefront\http\sacs\StorefrontAccountSacsHandler, result: true
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: ZMUrlManager (245): find controller: requestId=index
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: ZMUrlManager (238): find mapping: requestId=index, viewId=, parameter=
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: ZMUrlManager (245): controller definition: zenmagick\apps\store\storefront\controller\IndexController, zenmagick\apps\storefront\controller\IndexController, ZMIndexController, defaultController; controller: zenmagick\apps\store\storefront\controller\IndexController
+[Thu, 14 Jun 12 08:28:03 +0200] DEBUG: zenmagick\base\utils\Executor (187): executing zenmagick\apps\store\storefront\controller\IndexController
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: ZMUrlManager (292): find mapping: requestId=index, viewId=, parameter=
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: ZMUrlManager (193): find view: requestId=index, viewId=, parameter=
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: ZMUrlManager (279): find mapping: requestId=index, viewId=, parameter=
+[Thu, 14 Jun 12 08:28:03 +0200] DEBUG: ZMUrlManager (193): view: &template=views/index.php&layout=default_layout.php&viewId=
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: default_layout.php
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: head.php
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: head.php
+[Thu, 14 Jun 12 08:28:03 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (54): render block, template: 
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: header.php
+[Thu, 14 Jun 12 08:28:03 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (28): render block, template: 
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: header.php
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: menu.php
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: menu.php
+[Thu, 14 Jun 12 08:28:03 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (70): render block, template: 
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: views/index.php
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: views/index.php
+[Thu, 14 Jun 12 08:28:03 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (83): render block, template: 
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (117): check if eligible: footer.php
+[Thu, 14 Jun 12 08:28:03 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (32): render block, template: 
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: footer.php
+[Thu, 14 Jun 12 08:28:03 +0200] DEBUG: zenmagick\http\templating\ZMPhpEngine (89): render block, template: 
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\templating\cache\SimpleTemplateCache (144): check if eligible: default_layout.php
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\view\ResourceManager (276): resolved file "site.css" as url: /zenmagick/themes/base/content/site.css; path=D:\Programming\xampp\htdocs\zm\zenmagick\themes\base\content\site.css
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\view\ResourceManager (276): resolved file "ie.css" as url: /zenmagick/themes/base/content/ie.css; path=D:\Programming\xampp\htdocs\zm\zenmagick\themes\base\content\ie.css
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\view\ResourceManager (276): resolved file "theme.css" as url: /zenmagick/themes/demo/content/theme.css; path=D:\Programming\xampp\htdocs\zm\zenmagick\themes\demo\content\theme.css
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\view\ResourceManager (276): resolved file "css/index.css" as url: /zenmagick/themes/demo/content/css/index.css; path=D:\Programming\xampp\htdocs\zm\zenmagick\themes\demo\content\css\index.css
+[Thu, 14 Jun 12 08:28:03 +0200] TRACE: zenmagick\http\view\ResourceManager (257): resolved file "common.js" as url: /zenmagick/themes/base/content/common.js; path=D:\Programming\xampp\htdocs\zm\zenmagick\themes\base\content\common.js
